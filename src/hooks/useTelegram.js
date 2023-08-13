@@ -14,7 +14,7 @@ export function useTelegram(){
             tg.MainButton.hide()
         }
     }
-
+console.log(tg)
     return{
         onClose,
         onToggleButton,

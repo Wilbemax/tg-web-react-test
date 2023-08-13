@@ -3,11 +3,11 @@ import './App.css';
 import { useTelegram } from './hooks/useTelegram';
 
 function App() {
-const {onToggleButton, tg} = useTelegram()
+  const { onToggleButton, tg } = useTelegram();
 
-useEffect(()=>{
-  tg.ready()
-}, [])
+  useEffect(() => {
+    tg.ready();
+  }, [tg, onToggleButton]);
 
   return (
     <div className="App">
