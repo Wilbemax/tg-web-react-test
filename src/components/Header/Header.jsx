@@ -1,19 +1,21 @@
-import React from 'react'
-import "./Header/Header.css"
-import Button from '../button/button'
-import { useTelegram } from '../../hooks/useTelegram'
+import React from 'react';
+import Button from '../button/button';
 
-export default function Header() {
-const {user, onClose} = useTelegram()
+import {useTelegram} from "../../hooks/useTelegram";
+import './Header.css';
+import Button from '../button/button';
 
+const Header = () => {
+    const {user, onClose} = useTelegram();
 
-  return (
-    <div className={"header"}>
-        <Button onClik={onClose}>Закрыть</Button>
-        <span className={"userName"}>
-        {user.user}
-        </span>
+    return (
+        <div className={'header'}>
+            <Button onClick={onClose}>Закрыть</Button>
+            <span className={'username'}>
+                {user?.username}
+            </span>
+        </div>
+    );
+};
 
-    </div>
-  )
-}
+export default Header;
