@@ -15,13 +15,13 @@ const Header = () => {
       <div className={styles.shop_title}>Your Shop</div>
       <div className={styles.flex_box}>
         {user ? (
-          <span className={styles.username}>
-            {user?.username}{" "}
-            <Button onClick={onClose}>
-              {" "}
+          
+            
+            <Button onClick={onClose} >
+              <p className={styles.username}>{user?.username}</p>
               <GrClose className={styles.cross}/>{" "}
             </Button>
-          </span>
+          
         ) : (
           <span className={styles.close}>
             <Button onClick={onClose}>
