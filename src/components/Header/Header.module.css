@@ -1,12 +1,18 @@
 .header{
     display: flex;
     justify-content: space-between;
-    padding: 1rem 1rem;
-    
+    padding: 1rem 2rem;
+
 }
 .flex_box{
     display: flex;
     align-items: center;
     text-align: center;
 
+}
+.cross{
+    font-size: 40px;
+    padding: 1rem;
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
 }

@@ -11,6 +11,7 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
+      
       <div className={styles.shop_title}>Your Shop</div>
       <div className={styles.flex_box}>
         {user ? (
@@ -18,13 +19,13 @@ const Header = () => {
             {user?.username}{" "}
             <Button onClick={onClose}>
               {" "}
-              <GrClose />{" "}
+              <GrClose className={styles.cross}/>{" "}
             </Button>
           </span>
         ) : (
           <span className={styles.close}>
             <Button onClick={onClose}>
-              Закрыть <GrClose />{" "}
+              Закрыть <GrClose className={styles.cross}/>{" "}
             </Button>
           </span>
         )}
