@@ -17,7 +17,7 @@ const Header = () => {
         {user ? (
           
             
-            <Button onClick={onClose} >
+            <Button  className={styles.close} onClick={onClose} >
               <p className={styles.username}>{user?.username}</p>
               <GrClose className={styles.cross}/>{" "}
             </Button>
