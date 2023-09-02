@@ -1,4 +1,4 @@
 [[redirects]]
-from = "/form"
-to = "/Form.jsx"
+from = "/*"
+to = "/index.html"
 status = 301
