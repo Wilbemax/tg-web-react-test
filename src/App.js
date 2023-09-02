@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
-  },[]);
+  }, [tg, onToggleButton]);
 
   return (
     <div className="App">
