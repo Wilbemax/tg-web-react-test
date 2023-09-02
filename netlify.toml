@@ -1,4 +1,4 @@
 [[redirects]]
 from = "/form"
-to = "/components/Form/Form.jsx"
+to = "/index.html"
 status = 301
