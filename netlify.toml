@@ -1,7 +1,4 @@
-// _redirects
-
-// Redirect root URL to Index component
-/:   /index 301!
-
-// Redirect /form URL to Form component
-/form : /form 301!
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
