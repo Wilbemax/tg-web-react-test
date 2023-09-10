@@ -1,6 +1,18 @@
 .form{
-   margin: 1rem; 
+    margin: 1rem;
+    
 }
-.fullName{
+.wrap{
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
 }
+.input{
+    color: var(--tg-theme-text-color);
+}
+.title{
+    text-align: center;
+}
+
+
