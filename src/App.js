@@ -22,9 +22,7 @@ function App() {
         <Route index element={<ProduktList />} />
         <Route path="form" element={<Form />} />
       </Routes>
-      <div className="content">
-        lorem ipsum dolor sit amet, consectetur
-      </div>
+      
     </div>
   );
 }
