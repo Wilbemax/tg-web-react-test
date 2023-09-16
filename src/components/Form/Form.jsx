@@ -14,6 +14,7 @@ export default function Form() {
               className={styles.input}
               id="1"
               margin="normal"
+              color="error"
               placeholder="Введите ваше Ф.И.О."
               label="Ваше ф.И.О."
               variant="outlined"

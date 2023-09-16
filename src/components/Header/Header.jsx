@@ -25,7 +25,7 @@ const Header = () => {
         ) : (
           <span className={styles.close}>
             <Button onClick={onClose}>
-              Закрыть <GrClose className={styles.cross}/>{" "}
+              Закрыть{" "}
             </Button>
           </span>
         )}

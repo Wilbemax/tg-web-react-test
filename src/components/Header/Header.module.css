@@ -1,6 +1,7 @@
 .header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem 2rem;
     font-size: 1.8rem;
 
@@ -11,9 +12,15 @@
     text-align: center;
 
 }
+.close {
+
+}.username{
+    background: inherit;
+    color: inherit;
+}
 .cross{
-    font-size: 40px;
-    padding: 1rem;
+    
+    
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
 }

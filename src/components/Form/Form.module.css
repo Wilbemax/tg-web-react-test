@@ -9,7 +9,8 @@
 
 }
 .input{
-    color: var(--tg-theme-text-color);
+    /* color: var(--tg-theme-text-color); */
+    color: red;
 }
 .title{
     text-align: center;
