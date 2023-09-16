@@ -8,18 +8,19 @@ const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: 'var(--tg-theme-text-color)',
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#ff0000',
-  },
+  
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
       borderColor: ' var(--tg-theme-secondary-bg-color)',
+      color: 'var(--tg-theme-text-color)'
     },
     '&:hover fieldset': {
       borderColor: 'var(--tg-theme-button-color)',
+      color: 'var(--tg-theme-text-color)'
     },
     '&.Mui-focused fieldset': {
       borderColor: 'var(--tg-theme-button-color)',
+      color: 'var(--tg-theme-text-color)'
     },
   },
 });
