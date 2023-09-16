@@ -1,7 +1,28 @@
 import React from "react";
-import { TextField } from "@mui/material";
 import styles from "./Form.module.css";
 import "../../App.css";
+import { TextField,styled } from "@mui/material";
+
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#A0AAB4',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#B2BAC2',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'var(--tg-theme-button-color)',
+    },
+    '&:hover fieldset': {
+      borderColor: '#B2BAC2',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#6F7E8C',
+    },
+  },
+});
 
 export default function Form() {
   return (
@@ -10,39 +31,24 @@ export default function Form() {
         <h1 className={styles.title}>Ваши данные</h1>
         <form action="#">
           <div className={styles.wrap}>
-            <TextField
-              className={styles.input}
-              id="1"
-              margin="normal"
-              color="error"
-              placeholder="Введите ваше Ф.И.О."
-              label="Ваше ф.И.О."
-              variant="outlined"
-            />
-            <TextField
-              className={styles.input}
-              id="1"
-              margin="normal"
-              placeholder="Ваше имя"
-              label="Outlined"
-              variant="outlined"
-            />
-            <TextField
-              className={styles.input}
-              id="2"
-              margin="normal"
-              placeholder="Placeholder"
-              label="Outlined"
-              variant="outlined"
-            />
-            <TextField
-              className={styles.input}
-              id="3"
-              margin="normal"
-              placeholder="Placeholder"
-              label="Outlined"
-              variant="outlined"
-            />
+          <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
+            <div className={styles.input}>
+              <input type="Name" placeholder="Введите ваше ФИО" />
+            </div>
+            <div className={styles.input}>
+              <input type="tel" placeholder="Введите ваше номер телефона " />
+            </div>
+            <div className={styles.input}>
+              <input type="text" placeholder="Введите адрксс доставки" />
+            </div>
+            <div className={styles.input}>
+              <select name="" id="">
+                <option value=""></option>
+              </select>
+            </div>
+            <div className={styles.input}>
+              <input type="email" placeholder="Введите ваше ФИО" />
+            </div>
           </div>
         </form>
       </div>

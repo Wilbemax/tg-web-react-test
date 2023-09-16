@@ -2,6 +2,9 @@
     margin: 1rem;
     
 }
+.title{
+    text-align: center;
+}
 .wrap{
     display: flex;
     flex-direction: column;
@@ -11,9 +14,19 @@
 .input{
     /* color: var(--tg-theme-text-color); */
     color: red;
+    border: 1px solid ;
+    border-radius: var(--border-radius-input);
+    padding: 0.5rem 1rem;
+    font-size: var(--fz-normal);
+    margin : 1rem 0 
+    
 }
-.title{
-    text-align: center;
+input{
+    width: 100%;
 }
+.textField__text{
+    color: aliceblue !important;
+}
+
 
 
