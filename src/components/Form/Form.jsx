@@ -6,20 +6,20 @@ import { TextField,styled } from "@mui/material";
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
-    color: '#A0AAB4',
+    color: 'var(--tg-theme-text-color)',
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: '#B2BAC2',
+    borderBottomColor: '#ff0000',
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: 'var(--tg-theme-button-color)',
+      borderColor: ' var(--tg-theme-secondary-bg-color)',
     },
     '&:hover fieldset': {
-      borderColor: '#B2BAC2',
+      borderColor: 'var(--tg-theme-button-color)',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#6F7E8C',
+      borderColor: 'var(--tg-theme-button-color)',
     },
   },
 });
@@ -31,7 +31,7 @@ export default function Form() {
         <h1 className={styles.title}>Ваши данные</h1>
         <form action="#">
           <div className={styles.wrap}>
-          <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
+          <CssTextField label="Ваше ФИО" placeholder="Введите ваше ФИО" id="custom-css-outlined-input" />
             <div className={styles.input}>
               <input type="Name" placeholder="Введите ваше ФИО" />
             </div>
