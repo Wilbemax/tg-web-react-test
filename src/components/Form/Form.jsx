@@ -15,6 +15,7 @@ const CssTextField = styled(TextField)({
       borderColor: " var(--tg-theme-button-color)",
       backgroundColor: " var(--tg-theme-secondary-bg-color)",
       placeholder: "var(--tg-theme-text-color)",
+      color: " var(--tg-theme-text-color)",
 
     },
     "&:hover fieldset": {
