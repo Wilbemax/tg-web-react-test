@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Form.module.css";
 import "../../App.css";
-import { TextField, styled, Select, MenuItem } from "@mui/material";
+import { TextField, styled, MenuItem } from "@mui/material";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -10,64 +10,47 @@ const CssTextField = styled(TextField)({
 
   "& .MuiOutlinedInput-root": {
     color: "var(--tg-theme-text-color)",
+    placeholder: "var(--tg-theme-text-color)",
     "& fieldset": {
       borderColor: " var(--tg-theme-button-color)",
       backgroundColor: " var(--tg-theme-secondary-bg-color)",
+      placeholder: "var(--tg-theme-text-color)",
+
     },
     "&:hover fieldset": {
       borderColor: "var(--tg-theme-button-color)",
       color: "var(--tg-theme-text-color)",
+      placeholder: "var(--tg-theme-text-color)",
+
     },
     "&.Mui-focused fieldset": {
       borderColor: "var(--tg-theme-button-color)",
       color: "var(--tg-theme-text-color)",
+      placeholder: "var(--tg-theme-text-color)",
+
     },
+    "&.MuiMenuItem-root":{
+      backgroundColor: "#ff0000"
+    }
   },
 });
-const CssSelect = styled(Select)(({ theme }) => ({
-  // Set the background color of the select component to transparent
-  borderColor: " var(--tg-theme-button-color)",
-  backgroundColor: " var(--tg-theme-secondary-bg-color)",
 
-  // Set the color of the select component to the primary text color
-  color: "var(--tg-theme-text-color)",
 
-  // Set the hover color of the select component to the secondary text color
-  "&:hover": {
-    borderColor: " var(--tg-theme-button-color)",
-    backgroundColor: " var(--tg-theme-secondary-bg-color)",
+const currencies = [
+  {
+    value: "Почта России",
+    label: "Почта России",
   },
-
-  // Set the focus color of the select component to the primary text color
-  "&.Mui-focused": {
-    borderColor: " var(--tg-theme-button-color)",
-    backgroundColor: " var(--tg-theme-secondary-bg-color)",
+  {
+    value: "СДЭК",
+    label: "СДЭК",
   },
-
-}));
-
-const CssItem = styled(MenuItem)({
+  {
+    value: "BoxBerry",
+    label: "BoxBerry ",
+  },
   
-  "& label.Mui-focused": {
-    color: "var(--tg-theme-text-color)",
-  },
-
-  "&. MuiSelect-select": {
-    color: "var(--tg-theme-text-color)",
-    "& MuiSelect-select": {
-      borderColor: " var(--tg-theme-button-color)",
-      backgroundColor: " var(--tg-theme-secondary-bg-color)",
-    },
-    "&:hover MuiSelect-select": {
-      borderColor: "var(--tg-theme-button-color)",
-      color: "var(--tg-theme-text-color)",
-    },
-    "&.Mui-focused MuiSelect-select": {
-      borderColor: "var(--tg-theme-button-color)",
-      color: "var(--tg-theme-text-color)",
-    },
-  },
-})
+];
 
 export default function Form() {
   return (
@@ -78,33 +61,39 @@ export default function Form() {
           <div className={styles.wrap}>
             <CssTextField
               label="Ваше ФИО"
+              margin="normal"
               placeholder="Введите ваше ФИО"
               className={styles.input}
               id="custom-css-outlined-input"
             />
             <CssTextField
               label="Номер телефона"
+              margin="normal"
               className={styles.input}
               placeholder="Введите ваш номер телефона"
               id="custom-css-outlined-input"
             />
             <CssTextField
               label="Ваш адрес"
+              margin="normal"
               className={styles.input}
               placeholder="Введите ваш адресс доставки"
               id="custom-css-outlined-input"
             />
-            <CssSelect
-              label="Выберете способ доставки"
-              className={styles.input}
-              onChange={(event) => console.log(event)}
+            <CssTextField
+              id="outlined-select-currency"
+              select
+              label="Способ доставки"
+              margin="normal"
+              defaultValue=""
+              helperText="*выберете самый удобный для вас способ доставки"
             >
-              <CssItem value={"Почта России"}>Почта России</CssItem>
-              <CssItem value={"СДЭК"}>СДЭК</CssItem>
-              <CssItem className="MuiSelect-option" value={"BoxBerry"}>
-                BoxBerry
-              </CssItem>
-            </CssSelect>
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </CssTextField>
           </div>
         </form>
       </div>
