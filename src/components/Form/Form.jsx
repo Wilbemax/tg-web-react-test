@@ -65,7 +65,7 @@ export default function Form() {
       tg.MainButtom.show()
 
     }
-  }, [sity, nomber, FIO])
+  }, [sity, nomber, FIO, tg])
 
   const onChangeSity = (e) => {
     setSity(e.target.value)
