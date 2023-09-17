@@ -13,7 +13,7 @@ const CssTextField = styled(TextField)({
     placeholder: "var(--tg-theme-text-color)",
     "& fieldset": {
       borderColor: " var(--tg-theme-button-color)",
-      backgroundColor: " var(--tg-theme-secondary-bg-color)",
+      // backgroundColor: " var(--tg-theme-secondary-bg-color)",
       placeholder: "var(--tg-theme-text-color)",
       color: " #ff0000",
 
