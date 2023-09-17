@@ -53,16 +53,16 @@ export default function Form() {
   const {tg} = useTelegram()
 
   useEffect( () => {
-    tg.MainButtom.setParams({
-      text: "Отправить данные"
+    tg.MainButton.setParams({
+      text: "Отправить данные",
     })
   })
 
   useEffect(() =>{
     if(!sity || !nomber || !FIO){
-      tg.MainButtom.hied()
+      tg.MainButton.hied()
     } else {
-      tg.MainButtom.show()
+      tg.MainButton.show()
 
     }
   }, [sity, nomber, FIO, tg])
