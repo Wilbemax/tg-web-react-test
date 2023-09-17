@@ -5,17 +5,15 @@ import { TextField, styled, MenuItem } from "@mui/material";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
-    // color: "#ff0000",
+    color: "var(--tg-theme-text-color)",
   },
 
   "& .MuiOutlinedInput-root": {
-    color: "#ff0000",
-    placeholder: "var(--tg-theme-text-color)",
+    color: "var(--tg-theme-text-color)",
     "& fieldset": {
       borderColor: " var(--tg-theme-button-color)",
-      // backgroundColor: " var(--tg-theme-secondary-bg-color)",
-      placeholder: "var(--tg-theme-text-color)",
-      color: " #ff0000",
+      
+      color: "var(--tg-theme-text-color)",
 
     },
     "&:hover fieldset": {
@@ -30,9 +28,7 @@ const CssTextField = styled(TextField)({
       placeholder: "var(--tg-theme-text-color)",
 
     },
-    "&.MuiMenuItem-root":{
-      backgroundColor: "#ff0000"
-    }
+   
   },
 });
 
