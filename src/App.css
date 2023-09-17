@@ -45,9 +45,7 @@
    h1,h2,h3,h4,h5,h6{font-size: inherit;font-weight: 400;}
 
    *{
-    background: var(--tg-theme-secondary-bg-color);
     
-    color: var(--tg-theme-text-color);
     font-weight: 500;
     font-size: 1.1rem;
    }

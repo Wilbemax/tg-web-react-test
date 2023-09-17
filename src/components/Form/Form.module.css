@@ -12,14 +12,12 @@
 
 }
 .input{
-    margin-bottom: 1.5rem;  
-}
-input{
+    margin-bottom: 1.5rem;
+    background: var(--tg-theme-secondary-bg-color) !important;  
+    color: var(--tg-theme-text-color) !important;
     width: 100%;
 }
-.textField__text{
-    color: aliceblue !important;
-}
+
 
 
 
