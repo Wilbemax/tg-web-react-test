@@ -11,7 +11,8 @@ const CssTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     color: "var(--tg-theme-text-color)",
     "& fieldset": {
-      borderColor: " var(--tg-theme-secondary-bg-color)",
+      borderColor: " var(--tg-theme-button-color)",
+      backgroundColor: " var(--tg-theme-secondary-bg-color)",
     },
     "&:hover fieldset": {
       borderColor: "var(--tg-theme-button-color)",
@@ -23,9 +24,50 @@ const CssTextField = styled(TextField)({
     },
   },
 });
-const CssSelect = styled(Select)({
+const CssSelect = styled(Select)(({ theme }) => ({
+  // Set the background color of the select component to transparent
+  borderColor: " var(--tg-theme-button-color)",
+  backgroundColor: " var(--tg-theme-secondary-bg-color)",
 
-});
+  // Set the color of the select component to the primary text color
+  color: "var(--tg-theme-text-color)",
+
+  // Set the hover color of the select component to the secondary text color
+  "&:hover": {
+    borderColor: " var(--tg-theme-button-color)",
+    backgroundColor: " var(--tg-theme-secondary-bg-color)",
+  },
+
+  // Set the focus color of the select component to the primary text color
+  "&.Mui-focused": {
+    borderColor: " var(--tg-theme-button-color)",
+    backgroundColor: " var(--tg-theme-secondary-bg-color)",
+  },
+
+}));
+
+const CssItem = styled(MenuItem)({
+  
+  "& label.Mui-focused": {
+    color: "var(--tg-theme-text-color)",
+  },
+
+  "&. MuiSelect-select": {
+    color: "var(--tg-theme-text-color)",
+    "& MuiSelect-select": {
+      borderColor: " var(--tg-theme-button-color)",
+      backgroundColor: " var(--tg-theme-secondary-bg-color)",
+    },
+    "&:hover MuiSelect-select": {
+      borderColor: "var(--tg-theme-button-color)",
+      color: "var(--tg-theme-text-color)",
+    },
+    "&.Mui-focused MuiSelect-select": {
+      borderColor: "var(--tg-theme-button-color)",
+      color: "var(--tg-theme-text-color)",
+    },
+  },
+})
 
 export default function Form() {
   return (
@@ -37,22 +79,31 @@ export default function Form() {
             <CssTextField
               label="Ваше ФИО"
               placeholder="Введите ваше ФИО"
+              className={styles.input}
               id="custom-css-outlined-input"
             />
             <CssTextField
               label="Номер телефона"
+              className={styles.input}
               placeholder="Введите ваш номер телефона"
               id="custom-css-outlined-input"
             />
             <CssTextField
               label="Ваш адрес"
+              className={styles.input}
               placeholder="Введите ваш адресс доставки"
               id="custom-css-outlined-input"
             />
-            <CssSelect label="Выберете способ доставки">
-              <MenuItem value={'Почта России'}>Почта России</MenuItem>
-              <MenuItem value={'СДЭК'}>СДЭК</MenuItem>
-              <MenuItem value={'BoxBerry'}>BoxBerry</MenuItem>
+            <CssSelect
+              label="Выберете способ доставки"
+              className={styles.input}
+              onChange={(event) => console.log(event)}
+            >
+              <CssItem value={"Почта России"}>Почта России</CssItem>
+              <CssItem value={"СДЭК"}>СДЭК</CssItem>
+              <CssItem className="MuiSelect-option" value={"BoxBerry"}>
+                BoxBerry
+              </CssItem>
             </CssSelect>
           </div>
         </form>

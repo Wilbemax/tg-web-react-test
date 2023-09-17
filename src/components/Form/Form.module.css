@@ -12,14 +12,7 @@
 
 }
 .input{
-    /* color: var(--tg-theme-text-color); */
-    color: red;
-    border: 1px solid ;
-    border-radius: var(--border-radius-input);
-    padding: 0.5rem 1rem;
-    font-size: var(--fz-normal);
-    margin : 1rem 0 
-    
+    margin-bottom: 1.5rem;  
 }
 input{
     width: 100%;
