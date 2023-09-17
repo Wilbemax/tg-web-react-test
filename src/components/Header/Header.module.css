@@ -4,7 +4,7 @@
     align-items: center;
     padding: 1rem 2rem;
     font-size: 1.8rem;
-
+    color: var(--tg-theme-text-color);
 }
 .flex_box{
     display: flex;
@@ -13,14 +13,11 @@
 
 }
 .close {
-
 }.username{
     background: inherit;
     color: inherit;
 }
-.cross{
-    
-    
+.cross{    
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
 }
