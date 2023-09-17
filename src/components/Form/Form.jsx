@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./Form.module.css";
 import "../../App.css";
 import { TextField, styled, MenuItem } from "@mui/material";
@@ -46,41 +46,55 @@ const currencies = [
 ];
 
 export default function Form() {
-  const [ sity, setSity] = useState('')
-  const [ FIO, setFIO] = useState('')
-  const [ nomber, setNomber] = useState('')
-  const [ dostavka, setDostavka] = useState('')
-  const {tg} = useTelegram()
+  const [sity, setSity] = useState("");
+  const [FIO, setFIO] = useState("");
+  const [nomber, setNomber] = useState("");
+  const [dostavka, setDostavka] = useState("");
+  const { tg } = useTelegram();
 
-  useEffect( () => {
+  const onSendData = useCallback(() => {
+    const data = {
+      sity,
+      FIO,
+      nomber,
+      dostavka,
+    };
+    tg.sendData(JSON.stringify(data));
+  }, [sity, nomber, dostavka,FIO,tg]);
+
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  });
+
+  useEffect(() => {
     tg.MainButton.setParams({
       text: "Отправить данные",
-    })
-  })
+    });
+  });
 
-  useEffect(() =>{
-    if(!sity || !nomber || !FIO){
-      tg.MainButton.hied()
+  useEffect(() => {
+    if (!sity || !nomber || !FIO) {
+      tg.MainButton.hied();
     } else {
-      tg.MainButton.show()
-
+      tg.MainButton.show();
     }
-  }, [sity, nomber, FIO, tg])
+  }, [sity, nomber, FIO, tg]);
 
   const onChangeSity = (e) => {
-    setSity(e.target.value)
-  }
+    setSity(e.target.value);
+  };
   const onChangeFIO = (e) => {
-    setFIO(e.target.value)
-  }
+    setFIO(e.target.value);
+  };
   const onChangeNomber = (e) => {
-    setNomber(e.target.value)
-  }
+    setNomber(e.target.value);
+  };
   const onChangeDostavka = (e) => {
-    setDostavka(e.target.value)
-  }
-
-
+    setDostavka(e.target.value);
+  };
 
   return (
     <div className={styles.form}>
