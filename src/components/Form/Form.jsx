@@ -77,7 +77,7 @@ export default function Form() {
 
   useEffect(() => {
     if (!sity || !nomber || !FIO) {
-      tg.MainButton.hied();
+      tg.MainButton.hide();
     } else {
       tg.MainButton.show();
     }
