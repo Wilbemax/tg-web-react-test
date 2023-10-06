@@ -1,66 +1,21 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useTelegram } from "../../hooks/useTelegram";
+import React from 'react';
+import Button from "../Button/Button";
+import {useTelegram} from "../../hooks/useTelegram";
+import './Header.css';
 
-const Form = () => {
-  const [country, setCountry] = useState("");
-  const [street, setStreet] = useState("");
-  const [subject, setSubject] = useState("physical");
-  const { tg } = useTelegram();
+const Header = () => {
+    const {user, onClose} = useTelegram();
 
-  const onSendData = useCallback(() => {
-    const data = {
-      country,
-      street,
-      subject,
-    };
-    tg.sendData(JSON.stringify(data));
-  }, [tg, country, street, subject]);
-
-  useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-  }, [tg,onSendData]);
-
-  useEffect(() => {
-    tg.MainButton.setParams({
-      text: "Отправить данные",
-    });
-  }, [tg.MainButton]);
-
-  useEffect(() => {
-    if (!street || !country) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-    }
-  }, [tg.MainButton, country, street]);
-
-  return (
-    <div className={"form"}>
-      <h3>Введите ваши данные</h3>
-      <input
-        className={"input"}
-        type="text"
-        placeholder={"Страна"}
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-      />
-      <input
-        className={"input"}
-        type="text"
-        placeholder={"Улица"}
-        value={street}
-        onChange={(e) => setStreet(e.target.value)}
-      />
-      <select
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        className={"select"}
-      >
-        <option value={"physical"}>Физ. лицо</option>
-        <option value={"legal"}>Юр. лицо</option>
-      </select>
-    </div>
-  );
+    return (
+        <div className={'header'}>
+            <Button onClick={onClose}>Закрыть</Button>
+            <span className={'username'}>
+                {user?.username}
+            </span>
+        </div>
+    );
 };
 
-export default Form;
+export default Header;
+
+
