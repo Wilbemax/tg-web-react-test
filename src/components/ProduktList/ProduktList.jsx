@@ -63,7 +63,7 @@ const getTotalPrice = (items = []) => {
 
 const ProductList = () => {
   const [addedItems, setAddedItems] = useState([]);
-  const { tg, queryId } = useTelegram();
+  const { tg } = useTelegram();
 
   const onSendData = useCallback((data) => {
     fetch("http://85.119.146.179:8000/web-data", {
@@ -73,7 +73,7 @@ const ProductList = () => {
       },
       body: JSON.stringify(data),
     });
-  }, );
+  });
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
