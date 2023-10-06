@@ -1,152 +1,78 @@
-import React, { useCallback, useEffect, useState } from "react";
-import styles from "./Form.module.css";
-import "../../App.css";
-import { TextField, styled, MenuItem } from "@mui/material";
-import { useTelegram } from "../../hooks/useTelegram";
+import React, {useCallback, useEffect, useState} from 'react';
+import './Form.css';
+import {useTelegram} from "../../hooks/useTelegram";
 
+const Form = () => {
+    const [country, setCountry] = useState('');
+    const [street, setStreet] = useState('');
+    const [subject, setSubject] = useState('physical');
+    const {tg} = useTelegram();
 
-const CssTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "var(--tg-theme-text-color)",
-  },
+    const onSendData = useCallback(() => {
+        const data = {
+            country,
+            street,
+            subject
+        }
+        tg.sendData(JSON.stringify(data));
+    }, [country, street, subject])
 
-  "& .MuiOutlinedInput-root": {
-    color: "var(--tg-theme-text-color)",
-    "& fieldset": {
-      borderColor: " var(--tg-theme-button-color)",
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+        return () => {
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
+    }, [onSendData])
 
-      color: "var(--tg-theme-text-color)",
-    },
-    "&:hover fieldset": {
-      borderColor: "var(--tg-theme-button-color)",
-      color: "var(--tg-theme-text-color)",
-      placeholder: "var(--tg-theme-text-color)",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "var(--tg-theme-button-color)",
-      color: "var(--tg-theme-text-color)",
-      placeholder: "var(--tg-theme-text-color)",
-    },
-  },
-});
+    useEffect(() => {
+        tg.MainButton.setParams({
+            text: 'Отправить данные'
+        })
+    }, [])
 
-const currencies = [
-  {
-    value: "Почта России",
-    label: "Почта России",
-  },
-  {
-    value: "СДЭК",
-    label: "СДЭК",
-  },
-  {
-    value: "BoxBerry",
-    label: "BoxBerry ",
-  },
-];
+    useEffect(() => {
+        if(!street || !country) {
+            tg.MainButton.hide();
+        } else {
+            tg.MainButton.show();
+        }
+    }, [country, street])
 
-export default function Form() {
-  const [sity, setSity] = useState("");
-  const [FIO, setFIO] = useState("");
-  const [nomber, setNomber] = useState("");
-  const [dostavka, setDostavka] = useState("");
-  const { tg } = useTelegram();
-
-  const onSendData = useCallback(() => {
-    const data = {
-      sity,
-      FIO,
-      nomber,
-      dostavka,
-    };
-    tg.sendData(JSON.stringify(data));
-  }, [sity, nomber, dostavka,FIO,tg]);
-
-  useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
-    };
-  });
-
-  useEffect(() => {
-    tg.MainButton.setParams({
-      text: "Отправить данные",
-    });
-  });
-
-  useEffect(() => {
-    if (!sity || !nomber || !FIO) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
+    const onChangeCountry = (e) => {
+        setCountry(e.target.value)
     }
-  }, [sity, nomber, FIO, tg]);
 
-  const onChangeSity = (e) => {
-    setSity(e.target.value);
-  };
-  const onChangeFIO = (e) => {
-    setFIO(e.target.value);
-  };
-  const onChangeNomber = (e) => {
-    setNomber(e.target.value);
-  };
-  const onChangeDostavka = (e) => {
-    setDostavka(e.target.value);
-  };
+    const onChangeStreet = (e) => {
+        setStreet(e.target.value)
+    }
 
-  return (
-    <div className={styles.form}>
-      <div className="content">
-        <h1 className={styles.title}>Ваши данные</h1>
-        <form action="#">
-          <div className={styles.wrap}>
-            <CssTextField
-              label="Ваше ФИО"
-              margin="normal"
-              value={FIO}
-              onChange={onChangeFIO}
-              placeholder="Введите ваше ФИО"
-              className={styles.input}
-              id="custom-css-outlined-input"
+    const onChangeSubject = (e) => {
+        setSubject(e.target.value)
+    }
+
+    return (
+        <div className={"form"}>
+            <h3>Введите ваши данные</h3>
+            <input
+                className={'input'}
+                type="text"
+                placeholder={'Страна'}
+                value={country}
+                onChange={onChangeCountry}
             />
-            <CssTextField
-              label="Номер телефона"
-              margin="normal"
-              value={nomber}
-              onChange={onChangeNomber}
-              className={styles.input}
-              placeholder="Введите ваш номер телефона"
-              id="custom-css-outlined-input"
+            <input
+                className={'input'}
+                type="text"
+                placeholder={'Улица'}
+                value={street}
+                onChange={onChangeStreet}
             />
-            <CssTextField
-              label="Ваш адрес"
-              margin="normal"
-              value={sity}
-              onChange={onChangeSity}
-              className={styles.input}
-              placeholder="Введите ваш адресс доставки"
-              id="custom-css-outlined-input"
-            />
-            <CssTextField
-              id="outlined-select-currency"
-              select
-              label="Способ доставки"
-              margin="normal"
-              value={dostavka}
-              onChange={onChangeDostavka}
-              helperText="*выберете самый удобный для вас способ доставки"
-            >
-              {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </CssTextField>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-}
+            <select value={subject} onChange={onChangeSubject} className={'select'}>
+                <option value={'physical'}>Физ. лицо</option>
+                <option value={'legal'}>Юр. лицо</option>
+            </select>
+        </div>
+    );
+};
+
+export default Form;
