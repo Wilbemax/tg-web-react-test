@@ -73,7 +73,7 @@ const ProductList = () => {
       },
       body: JSON.stringify(data),
     });
-  });
+  }, []);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
