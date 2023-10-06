@@ -1,37 +1,78 @@
-import React from "react";
+import React, {useCallback, useEffect, useState} from 'react';
+import './Header.css';
+import {useTelegram} from "../../hooks/useTelegram";
 
-import{GrClose}from 'react-icons/gr';
-import styles from "./Header.module.css";
+const Form = () => {
+    const [country, setCountry] = useState('');
+    const [street, setStreet] = useState('');
+    const [subject, setSubject] = useState('physical');
+    const {tg} = useTelegram();
 
-import { useTelegram } from "../../hooks/useTelegram";
-import Button from "../Button/Button";
+    const onSendData = useCallback(() => {
+        const data = {
+            country,
+            street,
+            subject
+        }
+        tg.sendData(JSON.stringify(data));
+    }, [country, street, subject])
 
-const Header = () => {
-  const { user, onClose } = useTelegram();
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData)
+        return () => {
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
+    }, [onSendData])
 
-  return (
-    <div className={styles.header}>
-      
-      <div className={styles.shop_title}>Your Shop</div>
-      <div className={styles.flex_box}>
-        {user ? (
-          
-            
-            <Button  className={styles.close} onClick={onClose} >
-              <p className={styles.username}>{user?.username}</p>
-              <GrClose className={styles.cross}/>{" "}
-            </Button>
-          
-        ) : (
-          <span className={styles.close}>
-            <Button onClick={onClose}>
-              Закрыть{" "}
-            </Button>
-          </span>
-        )}
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        tg.MainButton.setParams({
+            text: 'Отправить данные'
+        })
+    }, [])
+
+    useEffect(() => {
+        if(!street || !country) {
+            tg.MainButton.hide();
+        } else {
+            tg.MainButton.show();
+        }
+    }, [country, street])
+
+    const onChangeCountry = (e) => {
+        setCountry(e.target.value)
+    }
+
+    const onChangeStreet = (e) => {
+        setStreet(e.target.value)
+    }
+
+    const onChangeSubject = (e) => {
+        setSubject(e.target.value)
+    }
+
+    return (
+        <div className={"form"}>
+            <h3>Введите ваши данные</h3>
+            <input
+                className={'input'}
+                type="text"
+                placeholder={'Страна'}
+                value={country}
+                onChange={onChangeCountry}
+            />
+            <input
+                className={'input'}
+                type="text"
+                placeholder={'Улица'}
+                value={street}
+                onChange={onChangeStreet}
+            />
+            <select value={subject} onChange={onChangeSubject} className={'select'}>
+                <option value={'physical'}>Физ. лицо</option>
+                <option value={'legal'}>Юр. лицо</option>
+            </select>
+        </div>
+    );
 };
 
-export default Header;
+export default Form;
